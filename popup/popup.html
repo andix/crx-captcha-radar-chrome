@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Captcha Radar Status</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-group">
+        <div class="radar-ping">
+          <div class="ping-circle"></div>
+          <span class="logo-emoji">🛡️</span>
+        </div>
+        <div>
+          <h1 class="app-title">Captcha Radar</h1>
+          <span class="app-subtitle">Real-time Automated Guard</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Master Control Toggle -->
+    <div class="control-card">
+      <div class="control-info">
+        <span class="control-label">Radar Aktif</span>
+        <span class="control-desc" id="status-desc">Mendeteksi captcha di latar belakang</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="enable-toggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- Status of Current Page -->
+    <div class="section">
+      <h2 class="section-title">Halaman Saat Ini</h2>
+      <div class="status-box status-clear" id="current-status-box">
+        <div class="status-icon-wrap" id="current-status-icon-wrap">
+          <span class="status-icon" id="current-status-icon">✅</span>
+        </div>
+        <div class="status-content">
+          <h3 class="status-header" id="current-status-header">Halaman Bersih</h3>
+          <p class="status-detail" id="current-status-detail">Tidak ada captcha terdeteksi di tab aktif.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- History Section -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Riwayat Deteksi</h2>
+        <button class="clear-btn" id="clear-history-btn" title="Hapus Riwayat">Bersihkan</button>
+      </div>
+      <div class="history-list" id="history-container">
+        <!-- Log items will be inserted here -->
+        <div class="empty-history" id="empty-history-text">
+          <span class="empty-icon">📂</span>
+          <p>Belum ada riwayat deteksi.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OCR Strategy Order Settings -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Urutan Pembacaan OCR</h2>
+        <button class="clear-btn" id="reset-order-btn" title="Reset ke Default">Reset</button>
+      </div>
+      <p class="ocr-order-hint">Aktifkan/nonaktifkan &amp; urutkan strategi. Jika strategi teratas tidak terbaca, sistem otomatis lanjut ke strategi berikutnya.</p>
+      <div class="ocr-order-list" id="ocr-order-list"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>Versi 1.0.0</span>
+      <span class="footer-dot">•</span>
+      <span>Dibuat untuk Efisiensi</span>
+    </footer>
+  </div>
+
+  <script src="../lib/ocr-strategies.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

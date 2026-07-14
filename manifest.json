@@ -1,0 +1,59 @@
+{
+  "manifest_version": 3,
+  "name": "Captcha Detector & Radar",
+  "version": "1.0.0",
+  "description": "Mendeteksi keberadaan Captcha (reCAPTCHA, hCaptcha, Turnstile, dll) secara real-time dan menampilkan popup interaktif.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "lib/tesseract/tesseract.min.js",
+        "lib/ocr-strategies.js",
+        "content/content.js"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://www.google.com/recaptcha/*",
+        "https://recaptcha.net/*",
+        "https://challenges.cloudflare.com/*"
+      ],
+      "all_frames": true,
+      "js": [
+        "content/frame-autocheck.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["lib/tesseract/*"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ]
+}
